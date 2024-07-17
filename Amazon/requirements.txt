@@ -1,0 +1,7 @@
+Flask
+beautifulsoup4
+requests
+psycopg2-binary
+html5lib
+html.parser
+lxml

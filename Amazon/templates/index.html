@@ -1,32 +1,62 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Amazon Product Search</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>Amazon Product Scraper</title>
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <style>
+        body {
+            background-color: #f8f9fa;
+            padding-top: 50px; /* Adjust based on your navbar height */
+        }
+        .container {
+            max-width: 600px;
+            margin: auto;
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+        }
+        h1 {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+        form {
+            margin-bottom: 20px;
+        }
+        label {
+            font-weight: bold;
+        }
+    </style>
 </head>
 <body>
-    <h1>Amazon Product Search</h1>
-    <form method="POST" action="/">
-        <label for="product_name">Product Name:</label>
-        <input type="text" id="product_name" name="product_name" required><br><br>
-        
-        <label for="region">Select Region:</label>
-        <select id="region" name="region">
-            <option value="US">US</option>
-            <option value="UK">UK</option>
-            <option value="CA">Canada</option>
-            <option value="DE">Germany</option>
-            <option value="FR">France</option>
-            <option value="ES">Spain</option>
-            <option value="IT">Italy</option>
-            <option value="JP">Japan</option>
-            <option value="IN">India</option>
-            <option value="AU">Australia</option>
-        </select><br><br>
-        
-        <button type="submit">Search</button>
-    </form>
+    <div class="container">
+        <h1>Amazon Product Scraper</h1>
+        <form method="post">
+            <div class="form-group">
+                <label for="url">Amazon Product URL:</label>
+                <input type="text" id="url" name="url" class="form-control" placeholder="Enter Amazon product URL" required>
+            </div>
+            <button type="submit" class="btn btn-primary btn-block">Scrape Product Details</button>
+        </form>
+        {% with messages = get_flashed_messages(with_categories=true) %}
+          {% if messages %}
+            <div class="alert alert-info">
+                <ul class="mb-0">
+                {% for category, message in messages %}
+                  <li>{{ message }}</li>
+                {% endfor %}
+                </ul>
+            </div>
+          {% endif %}
+        {% endwith %}
+    </div>
+
+    <!-- Bootstrap JS -->
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 </body>
 </html>
